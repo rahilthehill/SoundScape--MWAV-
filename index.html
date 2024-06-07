@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minmalist Visualizer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="menu">
+        <button id="classicButton" class="mode-button" onclick="setMode('classic')">Classic</button>
+        <button id="channelsButton" class="mode-button" onclick="setMode('channels')">Channels</button>
+        <button id="colorfulButton" class="mode-button" onclick="setMode('colorful')">Colorful</button>
+        <button id="smoothButton" class="mode-button" onclick="setMode('smooth')">Smooth</button>
+        <button onclick="toggleSidebar()">Menu</button>
+    </div>
+    <button class="start-button" onclick="startVisualization()">Start</button>
+    <canvas id="waveform"></canvas>
+    <div class="sidebar" id="sidebar">
+        <h2>Enter SoundScape</h2>
+        <div class="section">
+            <h3>About</h3>
+            <p> SoundScape is a dynamic and interactive web-based application designed to visualize real-time audio input from your microphone. 
+            </p>
+            <p>  SoundScape aims to offer a appealing way to visualize your music/audio. </p>
+            <p>   You can choose from four different modes: Classic, Channels, Colorful, and Smooth.</p>
+            <p> I made it with the aim to use it as a fun backdrop for your setup while you're playing music.</p>
+            <p> It's a mini project that will be updated every now and then to enhance features and performance. </p>
+        </div>
+        <div class="section">
+            <h3>Changelog</h3>
+            <p>Version beta 1.0: 
+                Basic structure with HTML, CSS, and JavaScript. 
+                Initial canvas setup for audio waveform visualization. 
+                Basic functionality to capture microphone input and visualize waveforms.</p>
+                
+                <p>Version 1.0:
+                First official release. 
+                Added four visualization modes: Classic, Channels, Colorful, and Smooth. 
+                Implemented mode selection buttons with hover effects. 
+                Enhanced CSS for a clean black background and white waveforms.</p>
+                
+                <p>Version 1.1:
+                Added a sidebar with sections for "About", "Future Updates", and "Settings". 
+                Sidebar toggle functionality with a "Menu" button. Included settings to hide/show UI elements.</p>
+                
+                <p>Version 1.2:
+                Improved visual indicator for the active mode button. 
+                Buttons turn white to indicate the selected mode. 
+                CSS adjustments for better button hover and active state effects.</p>
+                
+                <p>Version 1.3:
+                Introduced animations for sidebar transitions. 
+                Sidebar now slides in from the right instead of popping open. 
+                Sidebar starts hidden on initial load.</p>
+                
+                <p>Version 1.4:
+                Updated "About" section with a detailed description of the project. 
+                Added new project name: "SoundScape". 
+                Enhanced overall user interface for a more polished look.</p>
+                
+                <p>(Current) Version 1.5:
+                Bug fixes and performance improvements. 
+                Ensured compatibility across different browsers and devices. 
+                Minor adjustments to visualizations for smoother performance.</p>
+
+                <p>Working on reading audio from the device itself rather than relying on a microphone!</p>
+        </div>
+        <div class="section">
+            <h3>Settings (WIP)</h3>
+            <p>Will include more color options, and parameters for tweaking the waveforms!</p>
+            <label for="hideUI">
+                <input type="checkbox" id="hideUI" onclick="toggleUI()"> Hide UI
+            </label>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

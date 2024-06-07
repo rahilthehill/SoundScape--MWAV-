@@ -1,0 +1,90 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+canvas {
+    display: block;
+    background-color: black;
+}
+
+.menu {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.menu button {
+    display: block;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.menu button:hover {
+    color: white;
+}
+
+.menu button.active {
+    color: white !important;
+}
+
+.start-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.sidebar {
+    position: fixed;
+    right: -300px;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    box-sizing: border-box;
+    transition: right 0.3s ease;
+    overflow-y: auto; /* Added for scroll functionality */
+}
+
+.sidebar.show {
+    right: 0;
+}
+
+.sidebar h2,
+.sidebar h3 {
+    color: white;
+    margin-top: 0;
+}
+
+.sidebar p {
+    color: white;
+    line-height: 1.5;
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+.sidebar .section {
+    margin-bottom: 20px;
+}
