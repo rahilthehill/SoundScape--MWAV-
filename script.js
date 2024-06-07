@@ -37,7 +37,10 @@ function toggleSidebar() {
 
 function startVisualization() {
     document.querySelector('.start-button').style.display = 'none';
-    document.querySelector('.menu').style.display = 'block';
+    document.getElementById('intro-waveform').style.display = 'none';
+    document.getElementById('menu').style.display = 'block';
+    document.getElementById('sidebar').style.display = 'block';
+    document.getElementById('waveform').style.display = 'block';
     canvas.style.display = 'block';
 
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -198,7 +201,8 @@ function drawSmooth() {
 
     for (let i = 0; i < bufferLength; i++) {
         let v = dataArray[i] / 128.0;
-        let targetY = v * HEIGHT / 2
+        let targetY = v * HEIGHT / 2;
+
         // Smooth the transition
         y += (targetY - y) * 0.1;
 
@@ -236,3 +240,42 @@ function draw() {
 
 // Set the initial active button
 updateActiveButton(mode);
+
+// Function for animating the intro waveform
+function animateIntroWaveform() {
+    const introCanvas = document.getElementById('intro-waveform');
+    const introCtx = introCanvas.getContext('2d');
+    introCanvas.width = window.innerWidth;
+    introCanvas.height = window.innerHeight;
+
+    let phase = 0;
+
+    function drawIntroWave() {
+        introCtx.clearRect(0, 0, introCanvas.width, introCanvas.height);
+
+        introCtx.lineWidth = 1;
+        introCtx.strokeStyle = 'rgba(255, 255, 255, 0.7)';
+
+        const centerY = introCanvas.height / 2;
+        const width = introCanvas.width;
+
+        introCtx.beginPath();
+        for (let x = 0; x < width; x++) {
+            const y = centerY + (Math.sin(phase + x * 0.02) + Math.sin(phase + x * 0.03) * 0.5 + Math.random() * 0.3) * (introCanvas.height / 8);
+            if (x === 0) {
+                introCtx.moveTo(x, y);
+            } else {
+                introCtx.lineTo(x, y);
+            }
+        }
+        introCtx.stroke();
+
+        phase += 0.03;
+        requestAnimationFrame(drawIntroWave);
+    }
+
+    drawIntroWave();
+}
+
+// Start the intro waveform animation
+animateIntroWaveform();

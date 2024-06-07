@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minmalist Visualizer</title>
+    <title>Minimalist Visualizer</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="menu">
+    <canvas id="intro-waveform"></canvas>
+    <button class="start-button" onclick="startVisualization()">Enter SoundScape</button>
+    <div class="menu" id="menu" style="display: none;">
         <button id="classicButton" class="mode-button" onclick="setMode('classic')">Classic</button>
         <button id="channelsButton" class="mode-button" onclick="setMode('channels')">Channels</button>
         <button id="colorfulButton" class="mode-button" onclick="setMode('colorful')">Colorful</button>
         <button id="smoothButton" class="mode-button" onclick="setMode('smooth')">Smooth</button>
         <button onclick="toggleSidebar()">Menu</button>
     </div>
-    <button class="start-button" onclick="startVisualization()">Start</button>
-    <canvas id="waveform"></canvas>
-    <div class="sidebar" id="sidebar">
+    <canvas id="waveform" style="display: none;"></canvas>
+    <div class="sidebar" id="sidebar" style="display: none;">
         <h2>Enter SoundScape</h2>
         <div class="section">
             <h3>About</h3>
@@ -59,12 +60,19 @@
                 Added new project name: "SoundScape". 
                 Enhanced overall user interface for a more polished look.</p>
                 
-                <p>(Current) Version 1.5:
+                <p>Version 1.5:
                 Bug fixes and performance improvements. 
                 Ensured compatibility across different browsers and devices. 
                 Minor adjustments to visualizations for smoother performance.</p>
 
-                <p>Working on reading audio from the device itself rather than relying on a microphone!</p>
+                <p>(Current) Version 1.6:
+                    Bug fixes and performance improvements. 
+                    Added a animated waveform for the Intro screen. 
+                    Minor adjustments to overall design and CSS.</p>
+
+                <p>Upcoming next:</p>
+                <p>Reading audio from the device itself rather than relying on a microphone</p>
+                <p>And making it mobile friendly!</p>
         </div>
         <div class="section">
             <h3>Settings (WIP)</h3>
