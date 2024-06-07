@@ -8,6 +8,7 @@ const WIDTH = canvas.width = window.innerWidth;
 const HEIGHT = canvas.height = window.innerHeight;
 
 let mode = 'classic';
+let phase = 0; // Declare and initialize phase
 
 function setMode(newMode) {
     mode = newMode;
@@ -219,6 +220,43 @@ function drawSmooth() {
     canvasCtx.stroke();
 }
 
+function drawLayered() {
+    analyser.getByteTimeDomainData(dataArray);
+
+    canvasCtx.fillStyle = 'black';
+    canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
+
+    canvasCtx.lineWidth = 2;
+    canvasCtx.strokeStyle = 'white';
+
+    canvasCtx.beginPath();
+
+    let sliceWidth = WIDTH * 1.0 / bufferLength;
+    let x = 0;
+    let y = HEIGHT / 2;
+
+    for (let i = 0; i < bufferLength; i++) {
+        let v = dataArray[i] / 128.0;
+        let targetY = v * HEIGHT / 2;  // Reduced amplitude
+        let randomOffset = (Math.sin(phase + i * 0.02) + Math.sin(phase + i * 0.03) * 0.5 + Math.random() * 0.3) * (HEIGHT / 50);  // Reduced randomness effect 
+
+        y += (targetY - y) * 0.5 + randomOffset;
+
+        if (i === 0) {
+            canvasCtx.moveTo(x, y);
+        } else {
+            canvasCtx.lineTo(x, y);
+        }
+
+        x += sliceWidth;
+    }
+
+    canvasCtx.lineTo(canvas.width, canvas.height / 2);
+    canvasCtx.stroke();
+
+    phase += 0.03; // Update phase for the next frame
+}
+
 function draw() {
     requestAnimationFrame(draw);
 
@@ -234,6 +272,9 @@ function draw() {
             break;
         case 'smooth':
             drawSmooth();
+            break;
+        case 'layered':
+            drawLayered();
             break;
     }
 }
